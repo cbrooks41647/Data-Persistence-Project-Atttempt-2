@@ -40,7 +40,7 @@ public class MainManager : MonoBehaviour
 
         if (PersistanceManager.Instance != null)
         {
-            OtherText.text = "Best Score : Name : " + PersistanceManager.Instance.UserName;
+            OtherText.text = "Best Score : " + PersistanceManager.Instance.HighScore + " Name : " + PersistanceManager.Instance.UserName;
         }
     }
 
@@ -78,5 +78,10 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+        if (m_Points > PersistanceManager.Instance.HighScore)
+        {
+            PersistanceManager.Instance.HighScore = m_Points;
+            PersistanceManager.Instance.SaveHighScore();
+        }
     }
 }
